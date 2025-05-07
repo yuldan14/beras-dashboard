@@ -21,40 +21,54 @@ const Content = () => {
     const dataKemarin = data.find((item) => item.date === yesterdayFormatted);
 
     if (dataHariIni) {
+      let silinda: number;
+      let bapanas: number;
+    
+      // Check if the selected type is "medium" or "premium"
       if (selectedTypeToday === "medium") {
-        setHargaHariIni(
-          (parseFloat(dataHariIni.medium_silinda) +
-            parseFloat(dataHariIni.medium_bapanas)) /
-            2
-        );
+        silinda = dataHariIni.medium_silinda; // Directly using the number from the data
+        bapanas = dataHariIni.medium_bapanas;
       } else {
-        setHargaHariIni(
-          (parseFloat(dataHariIni.premium_silinda) +
-            parseFloat(dataHariIni.premium_bapanas)) /
-            2
-        );
+        silinda = dataHariIni.premium_silinda;
+        bapanas = dataHariIni.premium_bapanas;
+      }
+    
+      // Validate if both values are numbers
+      if (!isNaN(silinda) && !isNaN(bapanas)) {
+        // Calculate the average and set it as a number
+        setHargaHariIni((silinda + bapanas) / 2); // Keep it as a number
+      } else {
+        setHargaHariIni(null); // Set null if invalid number
       }
     } else {
-      setHargaHariIni(null);
+      setHargaHariIni(null); // Set null if dataHariIni is undefined
     }
-
+      
     if (dataKemarin) {
+      let silinda: number;
+      let bapanas: number;
+    
+      // Check if the selected type is "medium" or "premium"
       if (selectedTypeYesterday === "medium") {
-        setHargaKemarin(
-          (parseFloat(dataKemarin.medium_silinda) +
-            parseFloat(dataKemarin.medium_bapanas)) /
-            2
-        );
+        silinda = dataKemarin.medium_silinda; // Directly using the number from the data
+        bapanas = dataKemarin.medium_bapanas;
       } else {
-        setHargaKemarin(
-          (parseFloat(dataKemarin.premium_silinda) +
-            parseFloat(dataKemarin.premium_bapanas)) /
-            2
-        );
+        silinda = dataKemarin.premium_silinda;
+        bapanas = dataKemarin.premium_bapanas;
+      }
+    
+      // Validate if both values are numbers
+      if (!isNaN(silinda) && !isNaN(bapanas)) {
+        // Calculate the average and set it as a number
+        setHargaKemarin((silinda + bapanas) / 2); // Keep it as a number
+      } else {
+        setHargaKemarin(null); // Set null if invalid number
       }
     } else {
-      setHargaKemarin(null);
+      setHargaKemarin(null); // Set null if dataKemarin is undefined
     }
+    
+    
   }, [selectedTypeToday, selectedTypeYesterday]);
 
   return (
