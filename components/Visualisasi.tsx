@@ -1,24 +1,32 @@
-'use client';
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import data from '../app/data_harga.json';
 
+type DataType = {
+  date: string;
+  id: number;
+  medium_silinda: number;
+  premium_silinda: number;
+  medium_bapanas: number;
+  premium_bapanas: number;
+};
+
 const Visualisasi = () => {
-  const [selectedType, setSelectedType] = useState('medium_silinda'); // Menyimpan kolom harga yang dipilih
-  const [filteredData, setFilteredData] = useState([]);
+  const [selectedType, setSelectedType] = useState('medium_silinda');
+  const [filteredData, setFilteredData] = useState<DataType[]>([]); // ✅ Tambahkan tipe di sini
 
   useEffect(() => {
     // Filter data berdasarkan tipe dan 1 tahun terakhir
     const now = new Date();
     const lastYear = new Date(now.setFullYear(now.getFullYear() - 1));
     const filtered = data
-      .filter((item) => new Date(item.date) >= lastYear) // Menggunakan 'date' sebagai acuan filter
-      .map((item) => ({
+      .filter((item: DataType) => new Date(item.date) >= lastYear) // Menggunakan 'date' sebagai acuan filter
+      .map((item: DataType) => ({
         ...item,
         date: new Date(item.date).toLocaleDateString('id-ID') // Mengubah format tanggal
       }));
 
-    setFilteredData(filtered);
+    setFilteredData(filtered); // ✅ Sekarang tidak error
   }, []);
 
   return (
@@ -28,7 +36,7 @@ const Visualisasi = () => {
       </div>
       <select
         value={selectedType}
-        onChange={(e) => setSelectedType(e.target.value)} // Menyesuaikan pilihan harga
+        onChange={(e) => setSelectedType(e.target.value)}
         className='mb-5 border border-gray-300 p-2 rounded-md'
       >
         <option value="medium_silinda">Medium Silinda</option>
@@ -44,7 +52,6 @@ const Visualisasi = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          {/* Menyesuaikan dataKey pada Line sesuai dengan pilihan */}
           <Line type="monotone" dataKey={selectedType} stroke="#8884d8" dot={false} />
         </LineChart>
       </ResponsiveContainer>
