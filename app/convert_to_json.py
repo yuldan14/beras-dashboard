@@ -1,40 +1,56 @@
 import sqlite3
 import json
+import os
 
-# Menghubungkan ke database SQLite dengan menggunakan 'with' untuk penanganan yang lebih baik
-with sqlite3.connect('data_harga.db') as conn:
-    cursor = conn.cursor()
+# Path ke database dan lokasi penyimpanan JSON
+DB_PATH = './app/data_harga.db'
+JSON_PATH = './app/data_harga.json'
 
-    # Menentukan query untuk memilih semua data dari tabel
-    cursor.execute("SELECT * FROM gabungan_harga_beras")
-    rows = cursor.fetchall()
+# Memastikan direktori './app' ada
+os.makedirs('./app', exist_ok=True)
 
-    # Mendapatkan nama kolom untuk JSON
-    column_names = [description[0] for description in cursor.description]
+try:
+    # Menghubungkan ke database SQLite dengan menggunakan 'with' untuk penanganan yang lebih baik
+    with sqlite3.connect(DB_PATH) as conn:
+        cursor = conn.cursor()
 
-    # Daftar kolom yang perlu dikonversi ke integer atau float
-    konversi_kolom = ["medium_silinda", "premium_silinda", "medium_bapanas", "premium_bapanas"]
+        # Mengecek apakah tabel `gabungan_harga_beras` ada
+        cursor.execute("""
+        SELECT name 
+        FROM sqlite_master 
+        WHERE type='table' AND name='gabungan_harga_beras';
+        """)
+        table_exists = cursor.fetchone()
 
-    # Mengubah hasil query menjadi format dictionary
-    data = []
-    for row in rows:
-        row_data = {}
-        for i, value in enumerate(row):
-            # Memeriksa apakah nilai pada kolom perlu dikonversi
-            if column_names[i] in konversi_kolom and value is not None:
-                try:
-                    # Mengonversi nilai yang relevan menjadi float
-                    row_data[column_names[i]] = float(value)
-                except ValueError:
-                    row_data[column_names[i]] = value
-            else:
-                # Jika nilai None, ubah ke nilai default (misalnya, string kosong)
-                row_data[column_names[i]] = value if value is not None else ""
+        if not table_exists:
+            raise ValueError("Tabel 'gabungan_harga_beras' tidak ditemukan di database.")
 
-        data.append(row_data)
+        # Menentukan query untuk memilih semua data dari tabel
+        cursor.execute("SELECT * FROM gabungan_harga_beras")
+        rows = cursor.fetchall()
 
-# Menyimpan hasil ke file JSON menggunakan 'with' untuk memastikan file ditutup setelah proses selesai
-with open('data_harga.json', 'w') as json_file:
-    json.dump(data, json_file, indent=4)
+        # Mendapatkan nama kolom untuk JSON
+        column_names = [description[0] for description in cursor.description]
 
-print("Konversi berhasil! Data disimpan di data_harga.json")
+        # Daftar kolom yang perlu dikonversi ke float
+        konversi_kolom = ["medium_silinda", "premium_silinda", "medium_bapanas", "premium_bapanas"]
+
+        # Mengubah hasil query menjadi format dictionary
+        data = []
+        for row in rows:
+            row_data = {
+                column_names[i]: (float(value) if column_names[i] in konversi_kolom and value is not None else value or "")
+                for i, value in enumerate(row)
+            }
+            data.append(row_data)
+
+    # Menyimpan hasil ke file JSON menggunakan 'with' untuk memastikan file ditutup setelah proses selesai
+    with open(JSON_PATH, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+
+    print(f"Konversi berhasil! Data disimpan di {JSON_PATH}")
+
+except sqlite3.Error as e:
+    print(f"Terjadi kesalahan pada database: {e}")
+except Exception as e:
+    print(f"Terjadi kesalahan: {e}")
