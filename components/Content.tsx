@@ -72,7 +72,7 @@ const Content = () => {
   }, [selectedTypeToday, selectedTypeYesterday]);
 
   return (
-    <div className="h-40 w-full justify-center md:justify-start flex flex-wrap items-center pt-5">
+    <div className="pl-5 h-full pb-10 w-full justify-start md:justify-start flex flex-wrap items-center pt-5 ">
       <div className="bg-secondary w-54 h-30 rounded-xl ml-10">
         <div className="px-2 py-2 flex">
           <p className="text-black w-8/10 font-sans font-semibold text-sm">

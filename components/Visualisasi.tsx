@@ -14,24 +14,23 @@ type DataType = {
 
 const Visualisasi = () => {
   const [selectedType, setSelectedType] = useState('medium_silinda');
-  const [filteredData, setFilteredData] = useState<DataType[]>([]); // ✅ Tambahkan tipe di sini
+  const [filteredData, setFilteredData] = useState<DataType[]>([]);
 
   useEffect(() => {
-    // Filter data berdasarkan tipe dan 1 tahun terakhir
     const now = new Date();
     const lastYear = new Date(now.setFullYear(now.getFullYear() - 1));
     const filtered = data
-      .filter((item: DataType) => new Date(item.date) >= lastYear) // Menggunakan 'date' sebagai acuan filter
+      .filter((item: DataType) => new Date(item.date) >= lastYear)
       .map((item: DataType) => ({
         ...item,
-        date: new Date(item.date).toLocaleDateString('id-ID') // Mengubah format tanggal
+        date: new Date(item.date).toLocaleDateString('id-ID')
       }));
 
-    setFilteredData(filtered); // ✅ Sekarang tidak error
+    setFilteredData(filtered);
   }, []);
 
   return (
-    <div className='w-full h-screen p-5 text-black'>
+    <div className='w-full h-screen p-5 text-black pl-15 md:pl-10'>
       <div className='text-black font-sans font-semibold mb-5'>
         1 Tahun Terakhir
       </div>
@@ -46,16 +45,19 @@ const Visualisasi = () => {
         <option value="premium_bapanas">Premium Bapanas</option>
       </select>
 
-      <ResponsiveContainer width='100%' height='80%'>
-        <LineChart data={filteredData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey={selectedType} stroke="#8884d8" dot={false} />
-        </LineChart>
-      </ResponsiveContainer>
+      {/* Membungkus ResponsiveContainer dengan div */}
+      <div className="w-full h-[20%] md:h-[80%] p-4 ">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={filteredData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey={selectedType} stroke="#8884d8" dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
