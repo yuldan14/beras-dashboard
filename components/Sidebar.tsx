@@ -51,7 +51,7 @@ const Sidebar = ({ onToggle }: { onToggle: (isOpen: boolean) => void }) => {
       <div
         id="menu"
         className={`bg-primary h-screen border border-black transition-all duration-300 ${
-          isMenuOpen ? "w-2/5 md:w-1/5" : "w-0 overflow-hidden"
+          isMenuOpen ? "w-2/5 md:w-1/5 translate-x-0" : "-translate-x-full w-2/5 md:w-1/5 transition-all duration-75 overflow-hidden"
         }`}
       >
         <div className="w-full h-20 flex justify-center flex-col">
