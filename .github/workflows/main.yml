@@ -2,7 +2,7 @@ name: Convert to JSON and Fetch Database
 
 on:
   schedule:
-    - cron: '30 6 * * *' # Every day at 06:30 UTC (13:30 WIB)
+    - cron: '30 6 * * *' # Setiap hari pukul 06:30 UTC (13:30 WIB)
   workflow_dispatch:
 
 jobs:
@@ -22,13 +22,35 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    - name: Create directory if not exists
+      run: |
+        mkdir -p app
+
     - name: Fetch latest database
       run: |
         curl -L https://github.com/yuldan14/predRice/raw/main/data_harga.db -o ./app/data_harga.db
 
+    - name: Verify database file
+      run: |
+        if [ ! -f "./app/data_harga.db" ]; then
+          echo "Database file not found!"
+          exit 1
+        else
+          echo "Database file downloaded successfully."
+        fi
+
     - name: Run conversion script
       run: |
         python ./app/convert_to_json.py
+
+    - name: Verify JSON output
+      run: |
+        if [ ! -f "./app/data_harga.json" ]; then
+          echo "JSON file was not created!"
+          exit 1
+        else
+          echo "JSON file created successfully."
+        fi
 
     - name: Commit changes
       run: |
