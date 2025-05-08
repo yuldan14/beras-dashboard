@@ -26,13 +26,19 @@ jobs:
       run: |
         rm -f ./app/data_harga.db
 
+    - name: Create app directory if not exists
+      run: |
+        mkdir -p ./app
+
     - name: Fetch latest database with wget
       run: |
         wget https://github.com/yuldan14/predRice/raw/main/data_harga.db -O ./app/data_harga.db
 
     - name: Verify database contents
       run: |
+        echo "Verifying tables in the database:"
         sqlite3 ./app/data_harga.db ".tables"
+        echo "Verifying schema of 'gabungan_harga_beras' table:"
         sqlite3 ./app/data_harga.db "PRAGMA table_info(gabungan_harga_beras);"
 
     - name: Run conversion script
