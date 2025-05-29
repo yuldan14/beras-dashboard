@@ -15,9 +15,8 @@ const Sidebar = ({ onToggle }: { onToggle: (isOpen: boolean) => void }) => {
     "Prediksi",
     "Histori Harga",
     "Histori Periode",
-    "Chatbot",
   ];
-
+ 
   return (
     <div className="relative">
       {/* Hamburger Button */}
