@@ -9478,5 +9478,165 @@
         "premium_silinda": 14750.0,
         "medium_bapanas": 14000.0,
         "premium_bapanas": 14750.0
+    },
+    {
+        "id": 12992,
+        "date": "2025-05-09",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14500.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14800.0
+    },
+    {
+        "id": 14179,
+        "date": "2025-05-10",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 15000.0
+    },
+    {
+        "id": 15367,
+        "date": "2025-05-11",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 15000.0
+    },
+    {
+        "id": 16556,
+        "date": "2025-05-12",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 17746,
+        "date": "2025-05-13",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 18937,
+        "date": "2025-05-14",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 20129,
+        "date": "2025-05-15",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 15000.0
+    },
+    {
+        "id": 21322,
+        "date": "2025-05-16",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 22516,
+        "date": "2025-05-17",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 23711,
+        "date": "2025-05-18",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 15000.0
+    },
+    {
+        "id": 24907,
+        "date": "2025-05-19",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14800.0
+    },
+    {
+        "id": 26104,
+        "date": "2025-05-20",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14875.0
+    },
+    {
+        "id": 27302,
+        "date": "2025-05-21",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14875.0
+    },
+    {
+        "id": 28501,
+        "date": "2025-05-22",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14667.0
+    },
+    {
+        "id": 29701,
+        "date": "2025-05-23",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14833.0
+    },
+    {
+        "id": 30902,
+        "date": "2025-05-24",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 32104,
+        "date": "2025-05-25",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 15000.0
+    },
+    {
+        "id": 33307,
+        "date": "2025-05-26",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 15000.0
+    },
+    {
+        "id": 34511,
+        "date": "2025-05-27",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
+    },
+    {
+        "id": 35716,
+        "date": "2025-05-28",
+        "medium_silinda": 14000.0,
+        "premium_silinda": 14750.0,
+        "medium_bapanas": 14000.0,
+        "premium_bapanas": 14750.0
     }
 ]
